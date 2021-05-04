@@ -1,16 +1,18 @@
 #these can come from fmriprep:
-in_preproc_T1w: '/scratch/sudesnac/CamCAN/fmriprep_20.2.0/sub-{subject}/anat/sub-{subject}_desc-preproc_T1w.nii.gz'
-in_brainmask_T1w: '/scratch/sudesnac/CamCAN/fmriprep_20.2.0/sub-{subject}/anat/sub-{subject}_desc-brain_mask.nii.gz'
+in_preproc_T1w: '/project/6050199/ext-data/hcp1200/HCP_1200_T1w_Diffusion_FS/{subject}/T1w/T1w_acpc_dc_restore_brain.nii.gz'
+in_brainmask_T1w: '/project/6050199/ext-data/hcp1200/HCP_1200_T1w_Diffusion_FS/{subject}/T1w/brainmask_fs.nii.gz'
 
 #this can come from raw bids:
-in_raw_T2w: '/project/6050199/akhanf/ext-bids/cam-can/bids/combined/sub-{subject}/anat/sub-{subject}_T2w.nii.gz'
+#in_raw_T2w: '/project/6050199/akhanf/ext-bids/cam-can/bids/combined/sub-{subject}/anat/sub-{subject}_T2w.nii.gz'
+
+
 
 #for template building - mix of fmriprep and internally processed-data
 in_images:
-  T1w: 'results/preproc/sub-{subject}/sub-{subject}_desc-brain_T1w.nii.gz'
-  T2w: 'results/preproc/sub-{subject}/sub-{subject}_space-T1w_desc-brain_T2w.nii.gz'
-  GM:  '/scratch/sudesnac/CamCAN/fmriprep_20.2.0/sub-{subject}/anat/sub-{subject}_label-GM_probseg.nii.gz'
-  WM:  '/scratch/sudesnac/CamCAN/fmriprep_20.2.0/sub-{subject}/anat/sub-{subject}_label-WM_probseg.nii.gz'
+  T1w: '/project/6050199/ext-data/hcp1200/HCP_1200_T1w_Diffusion_FS/{subject}/T1w/T1w_acpc_dc_restore_brain.nii.gz'
+  T2w: '/project/6050199/ext-data/hcp1200/HCP_1200_T1w_Diffusion_FS/{subject}/T1w/T2w_acpc_dc_restore_brain.nii.gz'
+  GM:  'results/preproc/sub-{subject}/sub-{subject}_space-T1w_label-GM_probseg.nii.gz'
+  WM:  'results/preproc/sub-{subject}/sub-{subject}_space-T1w_label-WM_probseg.nii.gz'
 
 
 #for naming the final files in templateflow output
@@ -23,23 +25,14 @@ bids_suffix:
 
 
 cohorts:
-  - young
-  - middle1
-  - middle2
-  - old1
-  - old2
+  - UR100
 
 participants_tsv:
-  young: 'config/participants_young.tsv'
-  middle1: 'config/participants_middle1.tsv'
-  middle2: 'config/participants_middle2.tsv'
-  old1: 'config/participants_old1.tsv'
-  old2: 'config/participants_old2.tsv'
+  UR100: 'config/participants_HCP_UR100.tsv'
 
 
 #for templateflow-style output
-template_name: 'CamCAN'  #tpl-{template_name} 
-
+template_name: 'HCP1200'  #tpl-{template_name} 
 
 
 resolution_index: 1 # res-{resolution_index}
@@ -71,12 +64,13 @@ std_template_name: 'MNI152NLin6Asym'
 #keep this empty, is set by command-line ( --config run_iter=1 or --config run_cohort=young)
 run_cohort: 
 run_iter: 
+run_composite: True
 
 #this is the iter which is exported into templateflow format
 max_iters: 8
 
 
-resample_init_template: False #set this True to resample init template to below dims 
+resample_init_template: True #set this True to resample init template to below dims 
 # WARNING - changing this can significantly alter memory usage and run-time -- 
 resample_vox_dims: 
  - 1
