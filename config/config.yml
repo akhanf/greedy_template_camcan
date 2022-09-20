@@ -31,7 +31,8 @@ cohorts:
 participants_tsv:
   UR100: 'config/participants_HCP_UR100.tsv'
 
-extra_participants_tsv: 'config/participants_7Tsubj_notUR100.tsv'
+extra_participants_tsv: /scratch/akhanf/3_processing/diffparc-smk/config/hcp7Tparticipants.tsv
+
 
 
 #for templateflow-style output
@@ -62,7 +63,7 @@ init_template:
   WM: 'resources/templateflow/tpl-MNI152NLin6Asym/FSL_FAST/tpl-MNI152NLin6Asym_res-04_desc-brain_T1w_prob_2.nii.gz'
 
 #will register cohort templates to the std template after they are generated
-std_template_name: 'MNI152NLin6Asym'
+std_template_name: 'MNI152NLin2009bAsym'
 
 #keep this empty, is set by command-line ( --config run_iter=1 or --config run_cohort=young)
 run_cohort: 
