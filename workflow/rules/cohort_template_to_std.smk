@@ -43,6 +43,9 @@ def get_inputs_composite_subj_to_std (wildcards):
     for c in cohorts:
         if wildcards.subject in subjects[c]:
             cohort = c
+        else:
+            cohort=cohorts[0] #use first cohort if subject not in the list
+
     std_template = wildcards.std_template
     subject = wildcards.subject
     iteration=config['max_iters']
@@ -76,6 +79,8 @@ def get_inputs_composite_subj_to_std_inverse (wildcards):
     for c in cohorts:
         if wildcards.subject in subjects[c]:
             cohort = c
+        else:
+            cohort=cohorts[0] #use first cohort if subject not in the list
     std_template = wildcards.std_template
     subject = wildcards.subject
     iteration=config['max_iters']

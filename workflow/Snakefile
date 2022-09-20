@@ -17,6 +17,9 @@ for cohort in config['cohorts']:
     subjects[cohort] = [ s.strip('sub-') for s in pd.read_table(config['participants_tsv'][cohort]).participant_id.to_list() ] 
     all_subjects = all_subjects + subjects[cohort]
 
+    
+extra_subjects = [ s.strip('sub-') for s in pd.read_table(config['extra_participants_tsv']).participant_id.to_list() ] 
+
 #get channels using keys in in_images
 channels = list(config['in_images'].keys())
 
@@ -42,6 +45,12 @@ else:
     rule all_finaltemplate:
         input:
             json = 'results/tpl-{name}/template_description.json'.format(name=config['template_name'])
+
+rule all_extra_participants:
+    input: expand('results/composite/sub-{subject}_to-{template}_via-cohort_{warptype}.nii.gz',\
+                    template=config['std_template_name'],\
+                    warptype=['CompositeWarp','CompositeInverseWarp'],\
+                    subject=extra_subjects)
 
 
 

@@ -26,9 +26,12 @@ bids_suffix:
 
 cohorts:
   - UR100
+#  - 7Tsubj
 
 participants_tsv:
   UR100: 'config/participants_HCP_UR100.tsv'
+
+extra_participants_tsv: 'config/participants_7Tsubj_notUR100.tsv'
 
 
 #for templateflow-style output
